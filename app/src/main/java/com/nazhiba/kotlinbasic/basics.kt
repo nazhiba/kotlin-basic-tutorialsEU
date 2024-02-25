@@ -184,7 +184,7 @@ fun main() {
         print("$CONTINUE")
     }
 
-//    FUNCTION
+//  FUNCTION
     println("\nPengunaan FUNCTION line 196 - 198")
     nazhiba()
 
@@ -252,11 +252,142 @@ fun main() {
     var LATEINIT = Mycar()
     LATEINIT.bos
 
+//  SETTERS AND GATTERS
+    println("\nPengunaan GATTERS line ")
+    var GETTERS = Mycar()
+    println("Brand is : ${GETTERS.mybrand}")
+    GETTERS.maxspeed = 80
+    println("MaxSpeed is : ${GETTERS.maxspeed}")
+    println("Model is : ${GETTERS.mymodel}")
+
+
+//  DATA CLASS
+    println("\nPengunaan DATA CLASS line ")
+    // ANIS
+    val user1 = user(1,"Anis")
+                                        //    val nameDataClass = user1.name
+                                        //    println(nameDataClass)
+    user1.name = "Anies"
+    // PRABOWO
+    val user2 = user(1,"Prabowo")
+    // GANJA
+    val user3 = user(1,"Ganjar")
+    println(user1 == user2)
+    println("User details : $user1")
+    println("User details : $user2")
+    println("User details : $user3")
+    // UPDATE USERS
+    val updateusers = user3.copy(name = "AFK") //Update users
+    println(user1)
+    println(updateusers)
+    println(updateusers.component1()) // print 1
+    println(updateusers.component2()) // print AFK
+    val (id,nameDataClass) = updateusers
+    /* |ini sama dengan -.
+       |                 |
+       |- val id = updateusers.id
+       |- val nameDataClass = updateusers.name
+    */
+    println("id=$id, name=$nameDataClass")
+
+
+//  INHERINTANCE
+    println("\nPengunaan INHERINTANCE line ")
+    var mobilku = Car(200.0,"A3","Audi")
+    var myEcar = ElectricCar(200.0,"S-model","Tesla",90.0)
+
+//    myEcar.extendRange(200.0)
+//    myEcar.drive()
+//    myEcar.chargertype = "Type 2"
+//    // POLYMORPHISM
+//    mobilku.drive(200.00)
+//    myEcar.drive(200.00)
+
+    mobilku.brake()
+    myEcar.brake()
+
+
 }
+// =================== INTERFACE ======================
+interface Drivable{
+    val maxspeed: Double
+    fun drive(): String
+    fun brake(){
+        println("The drivable is breaking")
+    }
+}
+//======================= INHERINTANCE =================
+// SUPER CLASS, PARENT CLASS, BASE CLASS
+open class vehicle{
+    // properties
+    // methods
+}
+
+
+// SUB CLASS CHILD CLASS OR DERIVED CLASS OF VEHICLE
+// SUPER CLASS, PARENT CLASS, BASE CLASS OF VEHICLE
+open class Car(override val maxspeed: Double, namel: String, val brand: String):Drivable{
+    open var range:Double = 0.0
+    fun extendRange(amount:Double){
+        if (amount > 0){
+            range+=amount
+        }
+    }
+
+    override fun drive(): String {
+        return "driving the interface drive"
+    }
+    open fun drive(jarak: Double){
+        println("Drove for $jarak KM")
+    }
+}
+
+
+// SUB CLASS CHILD CLASS OR DERIVED CLASS OF CAR
+class ElectricCar(maxspeed: Double,namel: String, brand: String, battryLife: Double)
+    : Car(maxspeed, namel, brand){
+    override var range = battryLife * 6
+    var chargertype = "Type1"
+    override fun drive(distance:Double){
+        println("Drove for $distance KM on electtriciy")
+        }
+    override fun drive():String{
+        return "Drove for $range KM on electricty"
+        }
+
+    override fun brake() {
+        super.brake()
+        println("brake inside of electric car")
+    }
+    }
+
+
+
+//======================= DATA CLASSES =================
+data class user(val id:Long, var name:String)
+
 //======================= CLASS ========================
 class Mycar(){
     lateinit var bos:String
+
+    // GETTERS
+    val mybrand:String = "BMW"
+        get() {
+            return field.toLowerCase()
+        }
+
+    // SETTERS
+    var maxspeed:Int = 250
+        // get() = field
+        set(value) {
+            field = if (value>0) value else throw IllegalArgumentException("Max speed gk mungkin 0 lahh")
+        }
+
+    var mymodel:String = "UEFI"
+        private set
+
     init {
+        this.mymodel = "UEFI"
         this.bos = "Ganjart"
         println(bos)
     }
