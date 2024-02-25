@@ -168,13 +168,152 @@ fun main() {
     }
 
 //    BREAK
-    println("\nPengunaan BREAK line 170 - ")
+    println("\nPengunaan BREAK line 170 - 176")
     for (BREAK in 1 until  20){
         print("$BREAK")
         if (BREAK/4 == 2) break
     }
 
+//    CONTINUE
+    println("\nPengunaan CONTINUE line 178 - 185")
+    for (CONTINUE in 1 until  20){
+
+        if (CONTINUE/4 == 2) {
+            continue
+        }
+        print("$CONTINUE")
+    }
+
+//    FUNCTION
+    println("\nPengunaan FUNCTION line 196 - 198")
+    nazhiba()
+
+//  PARAMETER
+    println("\nPengunaan PARAMETER line 192")
+    var parameter = addon(12,12)
+    println(parameter)
+
+//  ARGUMENT
+    println("\nPengunaan PARAMETER line 197")
+    var ARGUMENT = addUp(5,3)
+    println("jawaban adalah ${ARGUMENT}")
+
+//  NULL POINTER EXCEPTION
+    println("\nPengunaan NULL POINTER EXCEPTION line 200")
+    var name:String? = "Nadzib"
+    name = null
+    if (name != null){
+        println("${name.length}")
+    }else{
+        null
+    }
+
+//  LOWERCASE
+    println("\nPengunaan LOWERCOASE line 211")
+    nama = "Al-Kwarizmi"
+    println(nama?.toLowerCase())
+
+//  UPPERCASE
+    println("\nPengunaan UPPERCASE line 215")
+    println(nama?.toUpperCase())
+
+//  LET
+    println("\nPengunaan LET line 218")
+    nama?.let { println(it.length) }
+
+//  ELVIS OPERATOR
+    println("\nPengunaan GK TAU NAMANYA APA(kalau gk salah ELVIS OPERATOR) line 221")
+    var names = name?:"PING 1.1.1.1"
+    println(names)
+
+    names!!.toLowerCase()
+    println(names)
+
+//  CLASS AND OBJECT
+    println("\nPengunaan CLASS AND OBJECT line 231")
+    var nadzib = Person("Nadzib","Hibatulloh",90)
+    var anonim = Person()
+
+//  SCOPE
+    println("\nPengunaan SCOPE line 236")
+    myfunction(5)
+
+//  FUNCTION IN CLASS
+    println("\nPengunaan FUNCTION IN CLASS line 239")
+    nadzib.hobi = "VALORANT" // MENGANTI HOBI
+    nadzib.denganhobi()
+    anonim.hobi = "APEX" //MENGANTI HOBI
+    anonim.denganhobi()
+    nadzib.age = 18 //MENGUBAH UMUR
+    println("Suhu ${nadzib.firstName} ini memliki umur ${nadzib.age}")
+
+//  LATEINIT
+    println("\nPengunaan LATEINIT IN CLASS line 251")
+    var LATEINIT = Mycar()
+    LATEINIT.bos
 
 }
+//======================= CLASS ========================
+class Mycar(){
+    lateinit var bos:String
+    init {
+        this.bos = "Ganjart"
+        println(bos)
+    }
+}
+
+class Person(firstName:String = "Anonim", lastName:String = "No input"){
+
+    //  MEMBER VARIABEL - PROPERTIES
+    var age:Int? = null
+    var hobi:String = "BERNAFAS MANUAL"
+    var firstName:String? = null // AGAR DAPAT DI PRINT DI LINE 248
+
+    // INITIALIZER
+    init {
+        this.firstName = firstName
+        println("Person created dengan Nama depan = {$firstName} dan Nama akhir {$lastName}")
+    }
+
+    //  MEMBER FUNCTION - METHODS
+    fun denganhobi(){
+        println("$firstName\'s Hobiku adalah $hobi")
+    }
+
+    // MEMBER SECONDARY CONSTRUCTOR
+    constructor(firstName: String, lastName: String, age:Int)
+            : this(firstName, lastName){
+                this.age = age
+                println("initilized a Person object withNama awal = $firstName dan nama akhir = $lastName demgam umur $age")
+            }
+
+}
+
+//======================= FUNCTION ==============================
+fun myfunction(a:Int){ // disini a adalah sebuah parameter bukan variabel
+
+    // disini a adalah varibel
+    var a = a
+    println(a)
+}
+
+fun nazhiba(){
+    println("called from my function")
+}
+
+fun addon(a:Int, b:Int):Int{
+    return a + b
+}
+
+fun addUp(a:Int, b:Int):Int{
+    return a + b
+}
+
+fun avg(a:Double, b:Double):Double{
+    return (a+b)/2
+}
+
+
+
 
 
