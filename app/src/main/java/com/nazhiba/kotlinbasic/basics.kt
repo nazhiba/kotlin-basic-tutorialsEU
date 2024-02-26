@@ -291,6 +291,10 @@ fun main() {
     println("id=$id, name=$nameDataClass")
 
 
+//  STRING LIST
+    val stringlist:List<String> = listOf("Joko","Ganjar","Budi")
+
+
 //  INHERINTANCE
     println("\nPengunaan INHERINTANCE line ")
     var mobilku = Car(200.0,"A3","Audi")
