@@ -1,5 +1,9 @@
 package com.nazhiba.kotlinbasic
 
+import android.annotation.SuppressLint
+import kotlin.math.floor
+
+@SuppressLint("DefaultLocale")
 fun main() {
     val myByte:Byte = 15
     val myShort:Short = 12522
@@ -292,8 +296,47 @@ fun main() {
 
 
 //  STRING LIST
-    val stringlist:List<String> = listOf("Joko","Ganjar","Budi")
+    println("\nPengunaan STRING LIST line ")
+    val stringlist:List<String> = listOf("Joko","Ganjar","GG")
+    val mixedtypelist:List<Any> = listOf("Joko",21,"Gooolang",2.10)
+    for (i in mixedtypelist){
+        if (i is Int) println("Integer : $i")
+        else if (i is Double) println("Double :$i with floor value ${floor(i)}") //FLOOR membulatkan tipe data Double
+        else if (i is String) println("String :$i ${i.length}")
+        else println("uknown type")
+    }
+// ALTERNATIVE
+    println("\nALTERNATIVE Pengunaan STRING LIST line")
+    for (i in mixedtypelist){
+        when(i){
+            is Int -> println("Integer : $i")
+            is Double -> println("Double :$i with floor value ${floor(i)}")
+            is String -> println("String :$i ${i.length}")
+            else -> println("uknown type")
+        }
+    }
 
+
+//  SMART CAST
+    println("\nPengunaan SMART CAST line")
+    var SMARTCAST:Any = "I have a dream"
+    if (SMARTCAST !is String) println("Bukan String")
+    else println("String ditemukan ${SMARTCAST.toUpperCase()}")
+
+//  EXPLICIT (UNSAFE) CASTING USING THE "as" KEYWOARD
+    println("\nPengunaan THE \"as\" KEYWOARD line")
+    val str1 :String = SMARTCAST as String
+    println(str1.length)
+
+    val obj2:Any = 1234
+    // val str2:String = obj2 as String
+    // println(str2.length)
+
+//  EXPLICIT (UNSAFE) CASTING USING THE "as?" KEYWOARD
+    println("\nPengunaan THE \"as?\" KEYWOARD line")
+    val obj3:Any = 1234
+    val str3:String? = obj3 as? String
+    println(str3)
 
 //  INHERINTANCE
     println("\nPengunaan INHERINTANCE line ")
