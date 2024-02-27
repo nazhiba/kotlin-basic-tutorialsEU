@@ -353,6 +353,93 @@ fun main() {
     mobilku.brake()
     myEcar.brake()
 
+//  ARRAY
+    println("\nPengunaan ARRAY line ")
+    val ARRAY:IntArray = intArrayOf(1,2,3,4,5)
+    val ARRAYS = intArrayOf(1,2,3,4,5,6)
+    val ARRAYS_D:DoubleArray = doubleArrayOf(1.0,2.0,3.0,4.0,5.0,6.0)
+    val ARRAYS_STRING = arrayOf("Senin","Senin","Senin","Senin","Senin","Senin","Ahad")
+    println(ARRAYS_STRING.contentToString())
+    println(ARRAYS)
+    ARRAY[0] = 6 //mengubah array pertama(dalam hal ini berarti 1) menjadi 6
+    ARRAY[1] = 6
+    println(ARRAY.contentToString())
+    println(ARRAYS[0]) //[0] = nilai awal dalam Array di kotlin
+    println(ARRAYS.contentToString())
+    for (i in ARRAYS){
+        print("${i + 5},")
+    }
+    ARRAYS_D[0] = 6.0
+
+
+//  Array di dalam data Class
+    println("\n\nPengunaan ARRAY di dalam data Class line ")
+    val DataClassArray = arrayOf(ARRAY("Monitor",1500.000), ARRAY("KEYBOARD MECHANICAL",800.000))
+    println(DataClassArray.contentToString())
+
+    for (i in DataClassArray){
+        println("${i.name}")
+    }
+
+    for (index in DataClassArray.indices){
+        println("${DataClassArray[index].name} is in index ${index}")
+    }
+
+    val mix = arrayOf("Sun",1,2,3,4,ARRAY("Apel",25.000))
+    println(mix.contentToString())
+
+
+//  LIST
+    println("\nPengunaan LIST line")
+    val LIST  = listOf("Januar","Pebruar","Mar")
+    val LIST_Any = listOf(1,2,3,4,true,false,"siap siap")
+    print(LIST_Any.size)
+    print(LIST[1])
+
+    for (month in LIST){
+        print(month)
+    }
+
+    val additionalBulan = LIST.toMutableList()
+    val LIST_BARU = arrayOf("Mei","Juni","Juli")
+    additionalBulan.addAll(LIST_BARU)
+    additionalBulan.add("April")
+    println(additionalBulan)
+
+    val LIST_MUTABLELIST = mutableListOf<String>("Senin","Senin","Senin")
+    val removelist = mutableListOf<String>("Kamis","Jumat")
+    LIST_MUTABLELIST.add("Minggu")
+    LIST_MUTABLELIST[1] = "Selasa"
+    LIST_MUTABLELIST.removeAt(2)
+    LIST_MUTABLELIST.removeAll(LIST_MUTABLELIST)
+    println(LIST_MUTABLELIST)
+
+//  SETS
+    println("\nPengunaan SETS line")
+    val SETS = setOf("Apel","Anggur","Apel","Samsung")
+    println(SETS.size)
+    println(SETS.toSortedSet())
+
+    val SETS_NEW = SETS.toMutableSet()
+    SETS_NEW.add("Water melon")
+    SETS_NEW.add("Pare")
+    println(SETS_NEW.elementAt(4))
+
+//  MAPS
+    println("\nPengunaan MAPS line")
+    val MAPS = mapOf(1 to "Monday",2 to "Selasa", 3 to "Rabu")
+    println(MAPS[2])
+    for (key in MAPS.keys){
+        println("$key is to ${MAPS[key]}")
+    }
+    val MAPSS = mapOf("favorite" to MAPS("Telo",12.000),
+        "!favorite" to MAPS("Telo mentah",12.000))
+    val newdayofweek = MAPS.toMutableMap()
+    newdayofweek[0] = "Friday"
+    println(newdayofweek.toSortedMap())
+
+//  LAMBDA EKSPRESSION
+
 
 }
 // =================== INTERFACE ======================
@@ -411,6 +498,8 @@ class ElectricCar(maxspeed: Double,namel: String, brand: String, battryLife: Dou
 
 
 //======================= DATA CLASSES =================
+data class MAPS(val nama:String, val harga:Double)
+data class ARRAY(val name:String, val harga:Double)
 data class user(val id:Long, var name:String)
 
 //======================= CLASS ========================
